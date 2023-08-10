@@ -65,6 +65,11 @@ class HuggingFace(BaseModel):
                          tokenizer_only=tokenizer_only,
                          meta_template=meta_template)
         from opencompass.utils.fileio import patch_hf_auto_model
+        import os
+        os.environ["http_proxy"] = "http://chenkeyu1:Cky13291983702@10.1.8.50:33128/"
+        os.environ["https_proxy"] = "http://chenkeyu1:Cky13291983702@10.1.8.50:33128/"
+        os.environ["HTTP_proxy"] = "http://chenkeyu1:Cky13291983702@10.1.8.50:33128/"
+        os.environ["HTTPS_proxy"] = "http://chenkeyu1:Cky13291983702@10.1.8.50:33128/"
         if hf_cache_dir is None:
             hf_cache_dir = os.getenv('HF_MODEL_HUB', None)
         patch_hf_auto_model(hf_cache_dir)
@@ -90,15 +95,15 @@ class HuggingFace(BaseModel):
             self.tokenizer.pad_token = self.tokenizer.eos_token
 
         # A patch for llama when batch_padding = True
-        if 'decapoda-research/llama' in path or \
-                (tokenizer_path and
-                 'decapoda-research/llama' in tokenizer_path):
-            self.logger.warning('We set new pad_token_id for LLaMA model')
-            # keep consistent with official LLaMA repo
-            # https://github.com/google/sentencepiece/blob/master/python/sentencepiece_python_module_example.ipynb  # noqa
-            self.tokenizer.bos_token = '<s>'
-            self.tokenizer.eos_token = '</s>'
-            self.tokenizer.pad_token_id = 0
+        # if 'decapoda-research/llama' in path or \
+        #         (tokenizer_path and
+        #          'decapoda-research/llama' in tokenizer_path):
+        self.logger.warning('We set new pad_token_id for LLaMA model')
+        # keep consistent with official LLaMA repo
+        # https://github.com/google/sentencepiece/blob/master/python/sentencepiece_python_module_example.ipynb  # noqa
+        self.tokenizer.bos_token = '<s>'
+        self.tokenizer.eos_token = '</s>'
+        self.tokenizer.pad_token_id = 0
 
     def _load_model(self,
                     path: str,
@@ -113,13 +118,13 @@ class HuggingFace(BaseModel):
             self.model = PeftModel.from_pretrained(self.model,
                                                    peft_path,
                                                    is_trainable=False)
-        self.model.eval()
+        self.model.eval().half()
 
         # A patch for llama when batch_padding = True
-        if 'decapoda-research/llama' in path:
-            self.model.config.bos_token_id = 1
-            self.model.config.eos_token_id = 2
-            self.model.config.pad_token_id = self.tokenizer.pad_token_id
+        # if 'decapoda-research/llama' in path:
+        self.model.config.bos_token_id = 1
+        self.model.config.eos_token_id = 2
+        self.model.config.pad_token_id = self.tokenizer.pad_token_id
 
     def generate(self, inputs: List[str], max_out_len: int,
                  **kwargs) -> List[str]:
@@ -203,9 +208,7 @@ class HuggingFace(BaseModel):
                                    max_length=self.max_seq_len -
                                    max_out_len)['input_ids']
         input_ids = torch.tensor(input_ids, device=self.model.device)
-        outputs = self.model.generate(input_ids,
-                                      max_new_tokens=max_out_len,
-                                      **kwargs)
+        outputs = self.model.generate(input_ids=input_ids,max_new_tokens=max_out_len,**kwargs)
 
         if not self.extract_pred_after_decode:
             outputs = outputs[:, input_ids.shape[1]:]

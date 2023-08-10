@@ -50,6 +50,7 @@ class AGIEvalDataset_v2(BaseDataset):
             d = {'question': question, 'options': options, 'label': label}
             data.append(d)
         dataset = Dataset.from_list(data)
+
         return dataset
 
 

@@ -18,15 +18,15 @@ chid_infer_cfg = dict(
 chid_eval_cfg = dict(evaluator=dict(type=AccEvaluator))
 
 chid_datasets = [
-    dict(
-        type=CHIDDataset,
-        path='json',
-        abbr='chid-dev',
-        data_files='./data/FewCLUE/chid/dev_few_all.json',
-        split='train',
-        reader_cfg=chid_reader_cfg,
-        infer_cfg=chid_infer_cfg,
-        eval_cfg=chid_eval_cfg),
+    # dict(
+    #     type=CHIDDataset,
+    #     path='json',
+    #     abbr='chid-dev',
+    #     data_files='./data/FewCLUE/chid/dev_few_all.json',
+    #     split='train',
+    #     reader_cfg=chid_reader_cfg,
+    #     infer_cfg=chid_infer_cfg,
+    #     eval_cfg=chid_eval_cfg),
     dict(
         type=CHIDDataset,
         path='json',

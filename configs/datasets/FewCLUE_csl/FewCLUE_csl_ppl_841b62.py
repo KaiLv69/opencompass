@@ -20,15 +20,15 @@ csl_infer_cfg = dict(
 csl_eval_cfg = dict(evaluator=dict(type=AccEvaluator))
 
 csl_datasets = [
-    dict(
-        type=CslDataset,
-        path='json',
-        abbr='csl_dev',
-        data_files='./data/FewCLUE/csl/dev_few_all.json',
-        split='train',
-        reader_cfg=csl_reader_cfg,
-        infer_cfg=csl_infer_cfg,
-        eval_cfg=csl_eval_cfg),
+    # dict(
+    #     type=CslDataset,
+    #     path='json',
+    #     abbr='csl_dev',
+    #     data_files='./data/FewCLUE/csl/dev_few_all.json',
+    #     split='train',
+    #     reader_cfg=csl_reader_cfg,
+    #     infer_cfg=csl_infer_cfg,
+    #     eval_cfg=csl_eval_cfg),
     dict(
         type=CslDataset,
         path='json',

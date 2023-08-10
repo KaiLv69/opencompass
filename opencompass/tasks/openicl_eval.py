@@ -55,6 +55,11 @@ class OpenICLEvalTask(BaseTask):
                 self._score()
 
     def _score(self):
+        import os
+        os.environ["http_proxy"] = "http://chenkeyu1:Cky13291983702@10.1.8.50:33128/"
+        os.environ["https_proxy"] = "http://chenkeyu1:Cky13291983702@10.1.8.50:33128/"
+        os.environ["HTTP_proxy"] = "http://chenkeyu1:Cky13291983702@10.1.8.50:33128/"
+        os.environ["HTTPS_proxy"] = "http://chenkeyu1:Cky13291983702@10.1.8.50:33128/"
         test_set = build_dataset_from_cfg(self.dataset_cfg).test
         # Postprocess dataset if necessary
         if 'dataset_postprocessor' in self.eval_cfg:

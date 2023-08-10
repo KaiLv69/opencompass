@@ -20,15 +20,15 @@ eprstmt_infer_cfg = dict(
 eprstmt_eval_cfg = dict(evaluator=dict(type=AccEvaluator))
 
 eprstmt_datasets = [
-    dict(
-        type=HFDataset,
-        abbr='eprstmt-dev',
-        path='json',
-        data_files='./data/FewCLUE/eprstmt/dev_few_all.json',
-        split='train',
-        reader_cfg=eprstmt_reader_cfg,
-        infer_cfg=eprstmt_infer_cfg,
-        eval_cfg=eprstmt_eval_cfg),
+    # dict(
+    #     type=HFDataset,
+    #     abbr='eprstmt-dev',
+    #     path='json',
+    #     data_files='./data/FewCLUE/eprstmt/dev_few_all.json',
+    #     split='train',
+    #     reader_cfg=eprstmt_reader_cfg,
+    #     infer_cfg=eprstmt_infer_cfg,
+    #     eval_cfg=eprstmt_eval_cfg),
     dict(
         type=HFDataset,
         abbr='eprstmt-test',

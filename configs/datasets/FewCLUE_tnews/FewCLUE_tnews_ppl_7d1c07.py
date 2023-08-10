@@ -22,15 +22,15 @@ tnews_infer_cfg = dict(
 tnews_eval_cfg = dict(evaluator=dict(type=AccEvaluator))
 
 tnews_datasets = [
-    dict(
-        type=TNewsDataset,
-        path='json',
-        abbr='tnews-dev',
-        data_files='./data/FewCLUE/tnews/dev_few_all.json',
-        split='train',
-        reader_cfg=tnews_reader_cfg,
-        infer_cfg=tnews_infer_cfg,
-        eval_cfg=tnews_eval_cfg),
+    # dict(
+    #     type=TNewsDataset,
+    #     path='json',
+    #     abbr='tnews-dev',
+    #     data_files='./data/FewCLUE/tnews/dev_few_all.json',
+    #     split='train',
+    #     reader_cfg=tnews_reader_cfg,
+    #     infer_cfg=tnews_infer_cfg,
+    #     eval_cfg=tnews_eval_cfg),
     dict(
         type=TNewsDataset,
         path='json',

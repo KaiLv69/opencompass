@@ -23,15 +23,15 @@ ocnli_fc_infer_cfg = dict(
 ocnli_fc_eval_cfg = dict(evaluator=dict(type=AccEvaluator))
 
 ocnli_fc_datasets = [
-    dict(
-        type=HFDataset,
-        abbr='ocnli_fc-dev',
-        path='json',
-        split='train',
-        data_files='./data/FewCLUE/ocnli/dev_few_all.json',
-        reader_cfg=ocnli_fc_reader_cfg,
-        infer_cfg=ocnli_fc_infer_cfg,
-        eval_cfg=ocnli_fc_eval_cfg),
+    # dict(
+    #     type=HFDataset,
+    #     abbr='ocnli_fc-dev',
+    #     path='json',
+    #     split='train',
+    #     data_files='./data/FewCLUE/ocnli/dev_few_all.json',
+    #     reader_cfg=ocnli_fc_reader_cfg,
+    #     infer_cfg=ocnli_fc_infer_cfg,
+    #     eval_cfg=ocnli_fc_eval_cfg),
     dict(
         type=HFDataset,
         abbr='ocnli_fc-test',

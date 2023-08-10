@@ -23,15 +23,15 @@ cluewsc_infer_cfg = dict(
 cluewsc_eval_cfg = dict(evaluator=dict(type=AccEvaluator))
 
 cluewsc_datasets = [
-    dict(
-        type=CluewscDataset,
-        path='json',
-        abbr='cluewsc-dev',
-        data_files='./data/FewCLUE/cluewsc/dev_few_all.json',
-        split='train',
-        reader_cfg=cluewsc_reader_cfg,
-        infer_cfg=cluewsc_infer_cfg,
-        eval_cfg=cluewsc_eval_cfg),
+    # dict(
+    #     type=CluewscDataset,
+    #     path='json',
+    #     abbr='cluewsc-dev',
+    #     data_files='./data/FewCLUE/cluewsc/dev_few_all.json',
+    #     split='train',
+    #     reader_cfg=cluewsc_reader_cfg,
+    #     infer_cfg=cluewsc_infer_cfg,
+    #     eval_cfg=cluewsc_eval_cfg),
     dict(
         type=CluewscDataset,
         path='json',
