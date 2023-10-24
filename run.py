@@ -12,6 +12,7 @@ from opencompass.registry import PARTITIONERS, RUNNERS
 from opencompass.runners import DLCRunner, LocalRunner, SlurmRunner
 from opencompass.utils import LarkReporter, Summarizer, get_logger
 
+os.environ['OPENAI_API_KEY'] = "your_openai_api_key"
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Run an evaluation task')

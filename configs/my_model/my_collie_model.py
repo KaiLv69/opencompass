@@ -3,14 +3,15 @@ from opencompass.models import HuggingFaceCausalLM
 models = [
     dict(
         type=HuggingFaceCausalLM,
-        abbr='llama-13b',
-        path="/mnt/petrelfs/chenkeyu1/models/evaluation/open_llama_7b/",
+        abbr='llama-7b',
+        path="/dev/shm/lvkai/llama-7b",
+        # path="huggyllama/llama-7b",
         # tokenizer_path='/mnt/petrelfs/chenkeyu1/models/collie/tokenizer/',
         tokenizer_kwargs=dict(padding_side='left',
                               truncation_side='left',
                               use_fast=False,
                               ),
-        max_out_len=100,
+        max_out_len=300,
         max_seq_len=2048,
         batch_size=8,
         model_kwargs=dict(device_map='auto'),
