@@ -61,6 +61,7 @@ class GenInferencer(BaseInferencer):
             output_json_filepath=output_json_filepath,
             **kwargs,
         )
+        self.kwargs = kwargs
 
         self.gen_field_replace_token = gen_field_replace_token
         self.max_out_len = max_out_len
@@ -120,7 +121,7 @@ class GenInferencer(BaseInferencer):
             with torch.no_grad():
                 parsed_entries = self.model.parse_template(entry, mode='gen')
                 results = self.model.generate_from_template(
-                    entry, max_out_len=self.max_out_len)
+                    entry, max_out_len=self.max_out_len, **self.kwargs)
                 generated = results
 
             # 5-3. Save current output
