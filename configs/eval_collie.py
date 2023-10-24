@@ -68,4 +68,4 @@ summarizer = dict(
 
 # export OPENAI_API_KEY=your_api_key
 # add -r to resume the previous run
-# python run.py configs/eval_collie.py -r -p llm -r -l --debug 2>&1 | tee log.txt
+# python run.py configs/eval_collie.py -r
